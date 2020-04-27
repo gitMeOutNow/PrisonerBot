@@ -61,6 +61,11 @@ class Main {
         botList[j].clear();
       }
     }
+    //Print
+    for(int printBots = 0; printBots < botList.length; printBots++)
+    {
+      System.out.println(botList[printBots].toString());
+    }
   }
 }
 class Bot {
@@ -101,6 +106,10 @@ class Bot {
 //Always cooperates
 class Cooperator extends Bot
 {
+  public Cooperator()
+  {
+    super.name = "Cooperator";
+  }
   public String decide(int turn)
   {
     return coop;
@@ -109,6 +118,10 @@ class Cooperator extends Bot
 //Always defects
 class Defector extends Bot
 {
+  public Defector()
+  {
+    super.name = "Defector";
+  }
   public String decide(int turn)
   {
     return def;
@@ -117,6 +130,10 @@ class Defector extends Bot
 //Random
 class Random extends Bot
 {
+ public Random()
+  {
+    super.name = "Random";
+  }
   public String decide(int turn)
   {
     if(Math.random() < 0.5) return def;
@@ -126,6 +143,10 @@ class Random extends Bot
 //Retaliates, plays nice at first
 class TitForTat extends Bot
 {
+  public TitForTat()
+  {
+    super.name = "TitForTat";
+  }
   public String decide(int turn)
   {
     if(turn == 0) return coop;
@@ -135,6 +156,10 @@ class TitForTat extends Bot
 //Retaliates, 10% chance to forgive
 class TitForTatForgives extends Bot
 {
+  public TitForTatForgives()
+  {
+    super.name = "TitForTatForgives";
+  }
   public String decide(int turn)
   {
      if(turn > 0 && otherHistory.get(turn-1).equals(def) && Math.random() > .1 ) return def;
@@ -144,6 +169,10 @@ class TitForTatForgives extends Bot
 //If you defect, I will burn you
 class GrimTrigger extends Bot
 {
+  public GrimTrigger()
+  {
+    super.name = "GrimTrigger";
+  }
   public String decide(int turn)
   {
     if(otherHistory.contains(def)) return def;
@@ -153,6 +182,10 @@ class GrimTrigger extends Bot
 //If other bot defects more than coops, defect. Cooperate at first and at ties
 class AverageValueCoop extends Bot
 {
+  public AverageValueCoop()
+  {
+    super.name = "AverageValueCoop";
+  }
   public String decide(int turn)
   {
     if(Collections.frequency(otherHistory, def) > Collections.frequency(otherHistory, coop)) return def;
@@ -162,6 +195,10 @@ class AverageValueCoop extends Bot
 //If other bot defects more than coop, defect. Defect at first and at ties
 class AverageValueDef extends Bot
 {
+  public AverageValueDef()
+  {
+    super.name = "AverageValueDef";
+  }
   public String decide(int turn)
   {
     if(Collections.frequency(otherHistory, def) >= Collections.frequency(otherHistory, coop)) return def;
